@@ -7,7 +7,7 @@ img{
   max-width: 100%;
 }
 body{
-  background-color: rgba(0, 0, 0, 0.696);
+  background: #1E2538;
 }
 .container{
   width: 1430px;
@@ -237,4 +237,105 @@ z-index: 100;
 
 .block {
   display: block;
+}
+
+
+.box_two{
+  margin-top: 54px;
+}
+
+.box_two_top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.all_trailers{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.box_two_top h1{
+  color: #FFF;
+font-family: Qanelas;
+font-size: 65px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+}
+
+.all_trailers p{
+  color: #FFF;
+font-family: Qanelas;
+font-size: 22px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.box_two_middle{
+  width: 1430px;
+height: 765px;
+flex-shrink: 0;
+border-radius: 10px;
+margin-top: 79px;
+margin-bottom: 26px;
+}
+
+.box_two_bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box_two_bottom_left{
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.box_two_bottom_right{
+  display: flex;
+  flex-direction: column;
+}
+
+.likes{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 37px;
+  margin-top: 8px;
+}
+
+.cont p{
+  color: #FFF;
+font-family: Qanelas;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.box_two_bottom_left h2{
+  color: #FFF;
+font-family: Qanelas;
+font-size: 45px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+}
+
+.trailer_img{
+  width: 1430px;
+height: 765px;
+flex-shrink: 0;
+border-radius: 10px;
+
 }
