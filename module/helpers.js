@@ -15,26 +15,3 @@ export const getData = async (path) => {
     console.log(e);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-// function reload (arr, place) {
-//   place.innerHTML = ""
-
-//   for(let item of arr){
-//     let img = document.createElement('img')
-
-//     img.src = "https://image.tmdb.org/t/p/original" + item.poster_path
-
-//     place.append(img)
-//   }
-// }
-

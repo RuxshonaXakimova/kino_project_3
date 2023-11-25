@@ -10,7 +10,8 @@ body{
   background: #1E2538;
 }
 .container{
-  width: 1430px;
+  max-width: 1920px;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -33,8 +34,8 @@ body{
   gap: 55px;
 }
 
-.header_middle p{
-  color: #FFF;
+.header_middle_p{
+  color: rgba(255, 255, 255, 0.35);
 font-family: Qanelas;
 font-size: 17px;
 font-style: normal;
@@ -150,7 +151,7 @@ line-height: normal;
 }
 
 .item_picture{
-  width: 339.39px;
+
 height: 462.914px;
 margin-bottom: 9px;
 border-radius: 15px;
@@ -179,7 +180,7 @@ cursor: pointer;
 }
 
 .film_bg{
-  width: 339.39px;
+  width: 100%;
 height: 462.914px;
 flex-shrink: 0;
 border-radius: 10px;
@@ -275,7 +276,7 @@ line-height: normal;
 }
 
 .box_two_middle{
-  width: 1430px;
+  width: 100%;
 height: 765px;
 flex-shrink: 0;
 border-radius: 10px;
@@ -338,4 +339,118 @@ height: 765px;
 flex-shrink: 0;
 border-radius: 10px;
 
+}
+
+iframe{
+  border-radius: 10px;
+}
+
+.box_three_top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box_three_top h1{
+  color: #FFF;
+font-family: Qanelas;
+font-size: 65px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+margin-bottom: 63px;
+margin-top: 150px;
+}
+.date{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.box_three_bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date p{
+  color: #6D717D;
+font-family: Qanelas;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+}
+
+.popular_left{
+  display: flex;
+  align-items: center;
+gap: 10px;
+}
+
+.popular_left_one, .popular_left_two{
+  width: 444px;
+height: 444px;
+flex-shrink: 0;
+border-radius: 10px;
+padding: 12px 16px;
+}
+
+.actor_rate_one{
+  color: #F2F60F;
+font-family: Qanelas;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 133.333% */
+margin-bottom: 301px;
+}
+
+.actor_name_one{
+  color: #FFF;
+font-family: Qanelas;
+font-size: 27px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.origin_actor_name_one{
+  color: rgba(255, 255, 255, 0.35);
+font-family: Qanelas;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-bottom: 9px;
+}
+
+.actor_age_one{
+  color: #F2F60F;
+font-family: Qanelas;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 133.333% */
+}
+
+.popular_right{
+  width: 496.934px;
+height: 444px;
+flex-shrink: 0;
+border-radius: 10px;
+background: #1B2133;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+.popular_right_box{
+  width: 90%;
+  height: 103px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.078);
 }

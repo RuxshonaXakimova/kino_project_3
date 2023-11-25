@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    background: #1E2538;
+}
+
+.container {
+    max-width: 1920px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.box_one{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 54px;
+}
+
+.box_one_left{
+    width: 404px;
+height: 559px;
+flex-shrink: 0;
+}
+
+.glavnaya, .films{
+    color: #4F5B7C;
+font-family: Qanelas;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 168.7%; /* 26.992px */
+text-decoration: none;
+}
+
+.film_name{
+    color: #FFF;
+font-family: Qanelas;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 168.7%;
+text-decoration: none;
+}
+
+.film_title{
+    color: #FFF;
+font-family: Qanelas;
+font-size: 65px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+}
+
+.film_original_title{
+    color: #FFF;
+font-family: Qanelas;
+font-size: 25px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.box_for_canvas p{
+    color: #FFF;
+text-align: center;
+font-family: Qanelas;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.description{
+    color: #FFF;
+font-family: Qanelas;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: 166.5%; /* 33.3px */
+text-align: justify;
+}
+
+.watch{
+    display: flex;
+    align-items: center;
+    gap: 37px;
+    justify-content: center;
+}
+
+.watch button{
+    width: 260px;
+height: 71px;
+flex-shrink: 0;
+border-radius: 10px;
+border: 2px solid #FFF;
+background: none;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 5px;
+margin-top: 30px;
+}
+
+.watch button a{
+    color: #FFF;
+font-family: Qanelas;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: 166.5%; /* 29.97px */
+text-decoration: none;
+}
+
+.rating_list{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
