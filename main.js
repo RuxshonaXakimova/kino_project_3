@@ -9,13 +9,15 @@ let box_two_middle = document.querySelector('.box_two_middle')
 let iframe = document.querySelector('iframe')
 let traler_name = document.querySelector('.box_two_bottom_left h2')
 let box_three_bottom = document.querySelector('.box_three_bottom')
+let actor_names = document.querySelectorAll('.name')
+let name_origin = document.querySelectorAll('.name_origin')
 
+let age = document.querySelectorAll('.age')
 Promise.all([getData('/movie/now_playing'), getData('/genre/movie/list')])
   .then(([movies, genre]) => {
     let film = movies.results.splice(1, 8)
     reload(film, box_one_bottom, genre.genres);
   })
-
 
 
 
@@ -33,6 +35,39 @@ export function setTrailer(video, name) {
 
   traler_name.innerHTML = name.title
 }
+
+
+getData('/person/popular')
+  .then(res => {
+    console.log(res);
+    let info = res.results.slice(0, 6)
+    actor_names.forEach((p, idx) => {
+      for (let i = 0; i <= 5; i++) {
+        if (idx == i) {
+          p.innerHTML = info[i].name
+          getData(`/person/${i}`)
+            .then(res=> {
+              // console.log(res)
+              // age.forEach(ad=> {
+              //   ad.innerHTML = res[i].birthday.split("-")[0]
+              // })
+            })
+        }
+      }
+    })
+
+    name_origin.forEach((p, idx) => {
+      for (let i = 0; i <= 5; i++) {
+        if (idx == i) {
+          p.innerHTML = info[i].name
+        }
+      }
+    })
+
+
+  })
+
+    
 
 
 
