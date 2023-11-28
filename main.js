@@ -1,5 +1,5 @@
 import { getData } from "./module/helpers";
-import { reload } from "./module/ui";
+import { min_videos, popular_person, reload } from "./module/ui";
 
 let body = document.body
 let box_one_bottom = document.querySelector('.box_one_bottom')
@@ -8,15 +8,23 @@ let film_bg = document.querySelector('.film_bg')
 let box_two_middle = document.querySelector('.box_two_middle')
 let iframe = document.querySelector('iframe')
 let traler_name = document.querySelector('.box_two_bottom_left h2')
-let box_three_bottom = document.querySelector('.box_three_bottom')
-let actor_names = document.querySelectorAll('.name')
 let name_origin = document.querySelectorAll('.name_origin')
+let popular_right = document.querySelector('.popular_right')
+let box_two_mini_videos = document.querySelector('.box_two_mini_videos')
+let box_four_bottom = document.querySelector('.box_four_bottom')
 
-let age = document.querySelectorAll('.age')
+
+
+
 Promise.all([getData('/movie/now_playing'), getData('/genre/movie/list')])
   .then(([movies, genre]) => {
     let film = movies.results.splice(1, 8)
     reload(film, box_one_bottom, genre.genres);
+    getData(`/movie/${movies.results[0].id}/videos`)
+      .then(res => {
+        setTrailer(res.results[0].key, res.results[0].name)
+      })
+
   })
 
 
@@ -31,49 +39,60 @@ box_one_top_p.forEach(btn => {
 })
 
 export function setTrailer(video, name) {
-  iframe.src = 'https://www.youtube.com/embed/' + video.key
+  iframe.src = 'https://www.youtube.com/embed/' + video
 
-  traler_name.innerHTML = name.title
+  traler_name.innerHTML = name
 }
 
 
 getData('/person/popular')
   .then(res => {
-    console.log(res);
-    let info = res.results.slice(0, 6)
-    actor_names.forEach((p, idx) => {
-      for (let i = 0; i <= 5; i++) {
-        if (idx == i) {
-          p.innerHTML = info[i].name
-          getData(`/person/${i}`)
-            .then(res=> {
-              // console.log(res)
-              // age.forEach(ad=> {
-              //   ad.innerHTML = res[i].birthday.split("-")[0]
-              // })
-            })
-        }
-      }
-    })
+    popular_person(res.results, popular_right)
+  })
 
-    name_origin.forEach((p, idx) => {
-      for (let i = 0; i <= 5; i++) {
-        if (idx == i) {
-          p.innerHTML = info[i].name
-        }
-      }
-    })
 
+
+getData(`/movie/top_rated`)
+  .then(res => {
+    min_videos(res.results, box_two_mini_videos)
+  })
+
+
+
+Promise.all([getData('/movie/popular'), getData('/genre/movie/list')])
+  .then(([movies, genre]) => {
+    reload(movies.results, box_four_bottom, genre.genres);
+    getData(`/movie/${movies.results[0].id}/videos`)
+      .then(res => {
+        setTrailer(res.results[0].key, res.results[0].name)
+      })
 
   })
 
-    
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// getData('/movie/popular')
+//   .then(res => {
+//   console.log(res);
+// reload(res.results, box_four_bottom)
+// })
 
 
 
