@@ -1,4 +1,4 @@
-import { setTrailer } from "../main"
+import { now_playing, setTrailer } from "../main"
 import { getData } from "./helpers"
 
 export function reload(arr, place, genres) {
@@ -150,19 +150,129 @@ export function min_videos(arr, place) {
     video_main.append(video_box, video_title)
     video_box.append(video_clicked_btn, video_box_blue_bg)
 
-//     video_box_blue_bg.onclick = () => {
-//       getData(`/movie/${item.id}/videos`)
-//         .then(res => {
-//           let trailers = [...res.results].filter(film => film.type == "Trailer")
-// setTrailer(trailers[0].key, trailers[0].title)
-//           let video_box_blue_bgs = document.querySelectorAll('.video_box_blue_bg')
-//           video_box_blue_bgs.forEach(btn => {
-//             btn.classList.remove('video_clicked')
-//           })
+    video_box_blue_bg.onclick = () => {
+      getData(`/movie/${item.id}/videos`)
+        .then(res => {
+          let trailers = [...res.results].filter(film => film.type == "Trailer")
+          setTrailer(trailers[0].key, trailers[0].title)
+          let video_box_blue_bgs = document.querySelectorAll('.video_box_blue_bg')
+          video_box_blue_bgs.forEach(btn => {
+            btn.classList.remove('video_clicked')
+          })
 
-//           video_box_blue_bg.classList.add('video_clicked')
-//         })
-//     }
+          video_box_blue_bg.classList.add('video_clicked')
+        })
+    }
   }
 
+}
+
+
+export function reload_genres(arr, place) {
+	place.innerHTML = " "
+
+	let ids = []
+	for (let item of arr) {
+		let text = document.createElement('p')
+		text.classList.add('box_one_top_p')
+		text.innerHTML = item.name
+		text.id = item.id
+		place.append(text)
+
+		if (ids.length == 0) {
+			now_playing('vv')
+		}
+
+		text.onclick = () => {
+			if (text.classList.contains('choosed_janre')) {
+				ids.splice(ids.indexOf(ids.find(num => num == item.id)), 1)
+				text.classList.remove('choosed_janre')
+			} else {
+				text.classList.add('choosed_janre')
+				ids.push(item.id)
+			}
+
+			Promise.all([getData(`/discover/movie?with_genres=${ids.join(',')}`), getData('/genre/movie/list')])
+				.then(([movies, genre]) => {
+					console.log(movies);
+					let film = movies.results.splice(1, 8)
+					reload(film, box_one_bottom, genre.genres);
+					getData(`/movie/${movies.results[0].id}/videos`)
+						.then(res => {
+							setTrailer(res.results[0].key, res.results[0].name)
+						})
+
+				})
+
+			if(ids.length ==0){
+				now_playing('vv')
+			}
+		}
+	}
+}
+
+
+export function search_movie_box(arr, place) {
+  place.innerHTML = " "
+
+  for(let item of arr){
+    let search_movie_box = document.createElement('div')
+    let search_movie_left = document.createElement('div')
+    let search_movie_right = document.createElement('div')
+    let search_movie_img = document.createElement('img')
+    let search_movie_info = document.createElement('div')
+    let search_movie_name = document.createElement('p')
+    let search_movie_janre = document.createElement('p')
+    let search_movie_rate = document.createElement('p')
+
+    search_movie_box.classList.add('search_movie_box')
+    search_movie_left.classList.add('search_movie_left')
+    search_movie_right.classList.add('search_movie_right')
+    search_movie_img.classList.add('search_movie_img')
+    search_movie_info.classList.add('search_movie_info')
+    search_movie_name.classList.add('search_movie_name')
+    search_movie_janre.classList.add('search_movie_janre')
+    search_movie_rate.classList.add('search_movie_rate')
+
+    search_movie_img.src = `https://image.tmdb.org/t/p/original${item.poster_path}`
+    search_movie_name.innerHTML = item.title
+    search_movie_janre.innerHTML = item.janres
+    search_movie_rate.innerHTML = item.popularity
+
+    place.append(search_movie_box)
+    search_movie_box.append(search_movie_left, search_movie_right)
+    search_movie_left.append(search_movie_img,search_movie_info)
+    search_movie_info.append(search_movie_name, search_movie_janre)
+    search_movie_right.append(search_movie_rate)
+  }
+}
+
+
+export function search_actor_box(arr, place) {
+  place.innerHTML = " "
+
+  for(let item of arr){
+    let search_actor_box = document.createElement('div')
+    let search_actor_left = document.createElement('div')
+    let search_actor_img = document.createElement('img')
+    let search_actor_info = document.createElement('div')
+    let search_actor_name = document.createElement('p')
+    let search_actor_janre = document.createElement('p')
+
+    search_actor_box.classList.add('search_actor_box')
+    search_actor_left.classList.add('search_actor_left')
+    search_actor_img.classList.add('search_actor_img')
+    search_actor_info.classList.add('search_actor_info')
+    search_actor_name.classList.add('search_actor_name')
+    search_actor_janre.classList.add('search_actor_job')
+
+    search_actor_img.src = `https://image.tmdb.org/t/p/original${item.profile_path}`
+    search_actor_name.innerHTML = item.name
+    search_actor_janre.innerHTML = item.job
+
+    place.append(search_actor_box)
+    search_actor_box.append(search_actor_left)
+    search_actor_left.append(search_actor_img,search_actor_info)
+    search_actor_info.append(search_actor_name, search_actor_janre)
+  }
 }

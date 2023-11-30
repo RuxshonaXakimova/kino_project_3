@@ -27,7 +27,7 @@
           <p class="header_middle_p">Категории</p>
         </div>
         <div class="header_right">
-          <img src="./public/img/Поиск.svg" alt="">
+          <img class="search" src="./public/img/Поиск.svg" alt="">
           <button>Войти</button>
         </div>
       </div>
@@ -41,13 +41,16 @@
         <div class="box_one_top">
           <h1>Сейчас в кино</h1>
           <hr>
-          <p class="box_one_top_p">Все</p>
+          <div class="jenres">
+
+          </div>
+          <!-- <p class="box_one_top_p">Все</p>
           <p class="box_one_top_p">Боевики</p>
           <p class="box_one_top_p">Приключения</p>
           <p class="box_one_top_p">Комедии</p>
           <p class="box_one_top_p">Фантастика</p>
           <p class="box_one_top_p">Триллеры</p>
-          <p class="box_one_top_p">Драма</p>
+          <p class="box_one_top_p">Драма</p> -->
         </div>
 
         <div class="box_one_bottom"></div>
@@ -145,21 +148,52 @@
       <div class="box_four">
         <h1>Популярные фильмы</h1>
         <div class="timing">
-          <p>Всё время</p>
-          <p>2020</p>
-          <p>2019</p>
-          <p>2018</p>
-          <p>2017</p>
-          <p>2016</p>
-          <p>2015</p>
+          <p class="all_time time">Всё время</p>
+          <p class="year time">2023</p>
+          <p class="year time">2022</p>
+          <p class="year time">2021</p>
+          <p class="year time">2020</p>
+          <p class="year time">2019</p>
+          <p class="year time">2018</p>
         </div>
 
-<div class="box_four_bottom">
 
-</div>
+        <div class="box_four_bottom">
+
+        </div>
       </div>
     </div>
   </section>
+
+
+  <div class="main_modal"></div>
+
+  <div class="box_madal">
+    <div class="modal_top">
+      <input class="text_search" type="text" placeholder="Find...">
+      <div class="btns">
+        <button class="settings">
+          <img src="./public/img/equalizer 1.png" alt="">
+        </button>
+        <button class="lupa">
+          <img src="./public/img/Vector.png" alt="">
+        </button>
+      </div>
+
+    </div>
+
+    <div class="box_movies_result">
+      <div class="box_movies">
+        <h1>Фильмы:</h1>
+        <div class="box_movies_list"></div>
+      </div>
+
+      <div class="box_actors">
+        <h1>Персоны:</h1>
+        <div class="box_actors_list"></div>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="./main.js"></script>
 
