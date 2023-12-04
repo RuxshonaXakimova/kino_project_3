@@ -1,4 +1,4 @@
-import { now_playing, setTrailer } from "../main"
+import { box_one_bottom, now_playing, setTrailer } from "../main"
 import { getData } from "./helpers"
 
 export function reload(arr, place, genres) {
@@ -172,6 +172,9 @@ export function reload_genres(arr, place) {
 	place.innerHTML = " "
 
 	let ids = []
+  if (ids.length == 0) {
+    now_playing('vv')
+  }
 	for (let item of arr) {
 		let text = document.createElement('p')
 		text.classList.add('box_one_top_p')
@@ -179,9 +182,7 @@ export function reload_genres(arr, place) {
 		text.id = item.id
 		place.append(text)
 
-		if (ids.length == 0) {
-			now_playing('vv')
-		}
+	
 
 		text.onclick = () => {
 			if (text.classList.contains('choosed_janre')) {

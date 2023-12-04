@@ -2,7 +2,7 @@ import { getData } from "./module/helpers";
 import { min_videos, popular_person, reload, reload_genres, search_actor_box, search_movie_box } from "./module/ui";
 
 let body = document.body
-let box_one_bottom = document.querySelector('.box_one_bottom')
+export let box_one_bottom = document.querySelector('.box_one_bottom')
 let box_one_top_p = document.querySelectorAll('.box_one_top_p, .header_middle p')
 let film_bg = document.querySelector('.film_bg')
 let box_two_middle = document.querySelector('.box_two_middle')
@@ -58,12 +58,14 @@ function debounce(func, timeout = 300) {
 
 function saveInput() {
 	console.log('Saving data');
+	search(inp_search)
 }
 const processChange = debounce(() => saveInput());
 
-inp_search.onkeyup = () => {
-	processChange(search(inp_search))
 
+
+inp_search.onkeyup = () => {
+	processChange()
 }
 
 function search(inp) {
@@ -78,6 +80,11 @@ function search(inp) {
 }
 
 all_new_movies.onclick = () => {
+	if(all_new_movies.hasAttribute('id')){
+		now_playing('vv')
+		all_new_movies.removeAttribute('id')
+		return
+	}
 	Promise.all([getData('/movie/now_playing'), getData('/genre/movie/list')])
 		.then(([movies, genre]) => {
 			reload(movies.results, box_one_bottom, genre.genres);
@@ -85,7 +92,8 @@ all_new_movies.onclick = () => {
 				.then(res => {
 					setTrailer(res.results[0].key, res.results[0].name)
 				})
-
+				all_new_movies.innerHTML = "Скрыть"
+				all_new_movies.setAttribute('id', "shaw_all")
 		})
 }
 
@@ -108,7 +116,6 @@ export function now_playing(smth) {
 getData('/genre/movie/list')
 	.then(res => {
 		reload_genres(res.genres, janres_box)
-
 	})
 
 
@@ -203,51 +210,3 @@ timing_years.forEach(year => {
 
 
 
-
-
-
-
-// getData('/movie/popular')
-//   .then(res => {
-//   console.log(res);
-// reload(res.results, box_four_bottom)
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// getData('/movie/now_playing?language=ru')
-//   .then(res => {
-//     let film = res.results.splice(1,8)
-//     reload(film, box_one_bottom, film_bg);
-//   })
-
-
-
-
-// getData('/genre/movie/list')
-// .then(res=> {
-//   console.log(res);
-// })
-
-
-
-
-// box_two_middle.style.background = `url(https://image.tmdb.org/t/p/original${res.poster_path}) center no-repeat`
-//   box_two_middle.style.backgroundSize = 'cover'
